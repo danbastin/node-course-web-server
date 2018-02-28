@@ -44,11 +44,18 @@ app.get('/projects', (req, res) => {
 });
 
 app.get('/bad', (req, res) => {
+  var userIP;
+  if (req.headers["x-forwarded-for"]) {
+    userIP = req.headers["x-forwarded-for"].split(',');
+    userIP = userIP[userIP.length-1];
+  } else {
+    userIP = req.ip;
+  }
 
-  const ipUrl = `http://ip-api.com/json/${req.ip}`;
+  const ipUrl = `http://ip-api.com/json/${userIP}`;
 
   axios.get(ipUrl).then((result) => {
-    res.send(req.headers);
+    res.send(result);
   }).catch((err) => {
     res.send(err);
   });
