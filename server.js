@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const axios = require('axios');
 
 const port = process.env.PORT || 3000;
 var app = express();
@@ -43,7 +44,16 @@ app.get('/projects', (req, res) => {
 });
 
 app.get('/bad', (req, res) => {
-  res.send({err: 'Something happnend'});
+
+  const ipUrl = `http://ip-api.com/json/${req.ip}`;
+
+  axios.get(ipUrl).then((result) => {
+    res.send(ipUrl);
+  }).catch((err) => {
+    res.send(err);
+  });
+
+  
 });
 
 app.listen(port, () => {
