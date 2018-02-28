@@ -55,7 +55,8 @@ app.get('/bad', (req, res) => {
   const ipUrl = `http://ip-api.com/json/${userIP}`;
 
   axios.get(ipUrl).then((result) => {
-    res.send(result);
+    console.log(ipUrl);
+    res.send({ip: ipUrl});
   }).catch((err) => {
     res.send(err);
   });
