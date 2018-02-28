@@ -55,7 +55,15 @@ app.get('/bad', (req, res) => {
   const ipUrl = `http://ip-api.com/json/${userIP}`;
 
   axios.get(ipUrl).then((result) => {
-    res.send(`FUCK YOU BRO FROM ${result.data.regionName}`);
+    if (result.data.regionName === 'Colorado') {
+      res.send('<h1>FUCK YOU JERRY!!!!!</h1>');
+    } else if (result.data.regionName === 'Utah') {
+      res.send('<h1>Dan, ure the best bruh</h1>');
+    } else if (result.data.regionName === 'Kentucky') {
+      res.send('<h1>FUCK YOU HUU!!!!');
+    } else {
+      res.send(`FUCK YOU BRO FROM ${result.data.regionName}`);
+    }
   }).catch((err) => {
     res.send(err);
   });
