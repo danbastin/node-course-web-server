@@ -55,8 +55,7 @@ app.get('/bad', (req, res) => {
   const ipUrl = `http://ip-api.com/json/${userIP}`;
 
   axios.get(ipUrl).then((result) => {
-    // res.send(`FUCK YOU BRO FROM ${result.regionName}`);
-    res.send(result);
+    res.send(`FUCK YOU BRO FROM ${result.data.regionName}`);
   }).catch((err) => {
     res.send(err);
   });
