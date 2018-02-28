@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => res.render('maint.hbs'));
+// app.use((req, res, next) => res.render('maint.hbs'));
 
 hbs.registerHelper('getCurrentYear', () => new Date().getFullYear());
 hbs.registerHelper('loud', t => t.toUpperCase());
